@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools"
+    android:padding="8dp">
+
+    <data>
+        <variable
+            name="personage"
+            type="com.example.rickmortyapi.models.Personage" />
+
+        <variable
+            name="homeFragmentViewModel"
+            type="com.example.rickmortyapi.viewModels.HomeViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/linear_user"
+        android:onClick="@{() -> homeFragmentViewModel.onClickActionGridAdapter(personage, 1)}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            bind:imageUrl="@{personage.image}"
+            android:id="@+id/image"
+            android:padding="1dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@android:drawable/ic_menu_agenda"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/personage_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@{personage.name}"/>
+
+            <TextView
+                android:id="@+id/personage_species"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@{personage.species}"/>
+
+            <TextView
+                android:id="@+id/personage_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@{personage.status}"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>
