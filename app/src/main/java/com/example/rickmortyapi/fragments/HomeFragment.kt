@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.rickmortyapi.R
@@ -12,6 +13,7 @@ import com.example.rickmortyapi.viewModels.HomeViewModel
 import com.example.rickmortyapi.databinding.FragmentHomeBindingImpl
 import com.example.rickmortyapi.models.Personage
 import com.example.rickmortyapi.models.SessionData
+import com.google.gson.Gson
 
 class HomeFragment : Fragment() {
 //    var usersList: List<UserData>? = null
@@ -45,11 +47,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vm.characterResponse.observe(binding.lifecycleOwner!!, {
+        vm.characterResponse.observe(binding.lifecycleOwner!!, Observer {
             vm.uiEventValue.value = 3
         })
 
-        vm.uiEventValue.observe(binding.lifecycleOwner!!, {
+        vm.uiEventValue.observe(binding.lifecycleOwner!!, Observer {
             when (it) {
                 0 -> {
 //                    val intent = Intent(Intent.ACTION_INSERT)
@@ -60,15 +62,16 @@ class HomeFragment : Fragment() {
 //                    activity!!.startActivity(intent)
                 }
                 1 -> {
+
                     val bundle = Bundle()
-                    bundle.putString("user", Gson().toJson(SessionData.userFragment))
-                    val fragment = UserFragment()
+                    bundle.putString("user", Gson().toJson(vm.character.value))
+                    val fragment = CharacterFragment()
                     fragment.arguments = bundle
-                    this.activity!!.supportFragmentManager.beginTransaction()
-                        .add(R.id.container, fragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .commit()
+                    this.activity?.supportFragmentManager?.beginTransaction()
+                        ?.add(R.id.container, fragment)
+                        ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        ?.addToBackStack(null)
+                        ?.commit()
                 }
                 2 -> {
 //                    val bundle = Bundle()

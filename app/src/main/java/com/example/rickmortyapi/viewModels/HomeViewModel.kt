@@ -21,6 +21,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun onClickActionGridAdapter(selectedCharacter: Personage, type: Int) {
+        onActionViewModel(type)
         character.value = selectedCharacter
     }
 
