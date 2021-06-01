@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rickmortyapi.databinding.ItemCharacterBinding
 import com.example.rickmortyapi.fragments.HomeFragment
 import com.example.rickmortyapi.models.Personage
+import com.example.rickmortyapi.models.SessionData
 import com.example.rickmortyapi.viewModels.HomeViewModel
 
 
-class GridCharactersAdapter(var fragment: HomeFragment, var list: ArrayList<Personage>?) : RecyclerView.Adapter<GridCharactersAdapter.GridCharacterViewHolder>() {
+class GridCharactersAdapter(var fragment: HomeFragment, var list: ArrayList<Personage>) : RecyclerView.Adapter<GridCharactersAdapter.GridCharacterViewHolder>() {
 
     private lateinit var vm: HomeViewModel
 
@@ -24,11 +25,11 @@ class GridCharactersAdapter(var fragment: HomeFragment, var list: ArrayList<Pers
 
     override fun onBindViewHolder(holder: GridCharacterViewHolder, position: Int) {
         holder.binding.homeFragmentViewModel = vm
-        holder.binding.personage = list?.get(position)
+        holder.binding.personage = SessionData.characters[position]
     }
 
     override fun getItemCount(): Int {
-        return list?.size!!
+        return SessionData.characters.size
     }
 
     class GridCharacterViewHolder(val binding: ItemCharacterBinding) : RecyclerView.ViewHolder(binding.root)

@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class APIClient {
 
     companion object {
-        private const val BASE_URL = "https://rickandmortyapi.com/api/"
+        private const val BASE_URL = "https://rickandmortyapi.com/"
         var retrofit: Retrofit? = null
 
         fun getClient(): Retrofit? {

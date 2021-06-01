@@ -10,6 +10,8 @@ import com.example.rickmortyapi.R
 import com.example.rickmortyapi.adapter.GridCharactersAdapter
 import com.example.rickmortyapi.viewModels.HomeViewModel
 import com.example.rickmortyapi.databinding.FragmentHomeBindingImpl
+import com.example.rickmortyapi.models.Personage
+import com.example.rickmortyapi.models.SessionData
 
 class HomeFragment : Fragment() {
 //    var usersList: List<UserData>? = null
@@ -43,11 +45,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vm.character.observe(binding.lifecycleOwner!!, Observer {
+        vm.characterResponse.observe(binding.lifecycleOwner!!, {
             vm.uiEventValue.value = 3
         })
 
-        vm.uiEventValue.observe(binding.lifecycleOwner!!, Observer {
+        vm.uiEventValue.observe(binding.lifecycleOwner!!, {
             when (it) {
                 0 -> {
 //                    val intent = Intent(Intent.ACTION_INSERT)
@@ -58,15 +60,15 @@ class HomeFragment : Fragment() {
 //                    activity!!.startActivity(intent)
                 }
                 1 -> {
-//                    val bundle = Bundle()
-//                    bundle.putString("user", Gson().toJson(SessionData.userFragment))
-//                    val fragment = UserFragment()
-//                    fragment.arguments = bundle
-//                    this.activity!!.supportFragmentManager.beginTransaction()
-//                        .add(R.id.container, fragment)
-//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                        .addToBackStack(null)
-//                        .commit()
+                    val bundle = Bundle()
+                    bundle.putString("user", Gson().toJson(SessionData.userFragment))
+                    val fragment = UserFragment()
+                    fragment.arguments = bundle
+                    this.activity!!.supportFragmentManager.beginTransaction()
+                        .add(R.id.container, fragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit()
                 }
                 2 -> {
 //                    val bundle = Bundle()
@@ -80,20 +82,19 @@ class HomeFragment : Fragment() {
 //                        .commit()
                 }
                 3 -> {
-                    adapter = GridCharactersAdapter(this, vm.characterResponse.value?.results)
-                    binding.adapter = adapter
-//                    SessionData.isLoading = false
-//                    if (::adapter.isInitialized) {
-//                        adapter.notifyDataSetChanged()
-//                    } else {
-//                        adapter = GridRandomUsersAdapter(this)
-//                        binding.adapter = adapter
-//                    }
+                    SessionData.isLoading = false
+                    if (::adapter.isInitialized) {
+                        adapter.notifyDataSetChanged()
+                    } else {
+                        adapter = GridCharactersAdapter(this, vm.characterResponse.value?.results!!)
+                        binding.adapter = adapter
+                    }
                 }
             }
         })
 
-
+        adapter = GridCharactersAdapter(this, ArrayList<Personage>())
+        binding.adapter = adapter
 
     }
 }

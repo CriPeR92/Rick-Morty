@@ -10,7 +10,7 @@ import com.example.rickmortyapi.repository.CharactersRepository
 class HomeViewModel : ViewModel() {
     var characterResponse = MutableLiveData<CharacterResponse>()
 
-    var character : LiveData<CharacterResponse> = characterResponse
+    var character = MutableLiveData<Personage>()
     val uiEventValue = MutableLiveData<Int>()
 
     init {
@@ -20,9 +20,8 @@ class HomeViewModel : ViewModel() {
         characterResponse = userRepository.getCharacters()
     }
 
-    fun onClickActionGridAdapter(character: Personage, type: Int) {
-//        SessionData.userFragment = character
-        onActionViewModel(type)
+    fun onClickActionGridAdapter(selectedCharacter: Personage, type: Int) {
+        character.value = selectedCharacter
     }
 
 //    fun onClickActionSavedUserAdapter(user: UserData) {

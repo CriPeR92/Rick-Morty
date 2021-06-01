@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.rickmortyapi.adapter.GridCharactersAdapter
+import com.example.rickmortyapi.models.SessionData
+import com.example.rickmortyapi.repository.CharactersRepository.getCharactersUpdate
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("bind:imageUrl")
@@ -35,15 +37,15 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
                 val total = adapter.itemCount
 
                 if (firstVisibleItems != null && firstVisibleItems.isNotEmpty()) {
-//                    SessionData.pastVisibleItems = firstVisibleItems[0]
+                    SessionData.pastVisibleItems = firstVisibleItems[0]
                 }
 
-//                if (!SessionData.isLoading) {
-//                    if ((visibleItemCount + SessionData.pastVisibleItems) >= total) {
-//                        SessionData.page += 1
-//                        getRandomUsersUpdate(recyclerView)
-//                    }
-//                }
+                if (!SessionData.isLoading) {
+                    if ((visibleItemCount + SessionData.pastVisibleItems) >= total) {
+                        SessionData.page += 1
+                        getCharactersUpdate(recyclerView)
+                    }
+                }
                 super.onScrolled(recyclerView, dx, dy)
             }
         })
