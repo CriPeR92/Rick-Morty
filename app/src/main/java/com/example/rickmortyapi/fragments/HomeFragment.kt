@@ -16,17 +16,10 @@ import com.example.rickmortyapi.models.SessionData
 import com.google.gson.Gson
 
 class HomeFragment : Fragment() {
-//    var usersList: List<UserData>? = null
-
-    var suggestions = mutableListOf<String>()
 
     lateinit var adapter: GridCharactersAdapter
-
-//    private lateinit var viewModel: HomeViewModel
-
     lateinit var binding: FragmentHomeBindingImpl
     private lateinit var vm: HomeViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +57,8 @@ class HomeFragment : Fragment() {
                 1 -> {
 
                     val bundle = Bundle()
-                    bundle.putString("user", Gson().toJson(vm.character.value))
+                    bundle.putString("user", Gson().toJson(vm.character.value
+                    ))
                     val fragment = CharacterFragment()
                     fragment.arguments = bundle
                     this.activity?.supportFragmentManager?.beginTransaction()

@@ -2,7 +2,7 @@ package com.example.rickmortyapi.models
 
 import com.google.gson.annotations.SerializedName
 
-
+@JsonClass
 data class CharacterResponse(@SerializedName("results") var results : ArrayList<Personage>,
                              @SerializedName("info") var info : Info)
 
