@@ -1,11 +1,10 @@
 package com.example.rickmortyapi.utils
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.rickmortyapi.adapter.GridCharactersAdapter
 import com.example.rickmortyapi.models.SessionData
 import com.example.rickmortyapi.repository.CharactersRepository.getCharactersUpdate
 import com.squareup.picasso.Picasso
@@ -50,4 +49,9 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
             }
         })
     }
+}
+
+@BindingAdapter("app:hideIfSaved")
+fun hideIfSaved(view: View, number: Int) {
+    view.visibility = if (number == 0) View.GONE else View.VISIBLE
 }

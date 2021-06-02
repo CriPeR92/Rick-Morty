@@ -7,11 +7,9 @@
         <variable
             name="personage"
             type="com.example.rickmortyapi.models.Personage" />
-
         <variable
             name="homeFragmentViewModel"
             type="com.example.rickmortyapi.viewModels.HomeViewModel" />
-
     </data>
 
     <LinearLayout
@@ -27,8 +25,7 @@
             android:id="@+id/image"
             android:padding="1dp"
             android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@android:drawable/ic_menu_agenda"/>
+            android:layout_height="70dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,10 +54,6 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="@{personage.status}"/>
-
-
         </LinearLayout>
-
-
     </LinearLayout>
 </layout>

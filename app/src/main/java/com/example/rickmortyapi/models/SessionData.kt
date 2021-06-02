@@ -7,8 +7,5 @@ class SessionData {
         var page = 1
         var isLoading = false
         var pastVisibleItems = 0
-//
-//        var userFragment: User? = null
-//        var userFragmentSaved: UserData? = null
     }
 }

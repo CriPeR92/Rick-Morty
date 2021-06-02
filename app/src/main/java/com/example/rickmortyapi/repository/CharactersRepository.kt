@@ -15,8 +15,6 @@ object CharactersRepository {
 
     var apiInterface: APIInterface? = null
     private val characterResponse = MutableLiveData<CharacterResponse>()
-    private val characterResponseUpdate = MutableLiveData<CharacterResponse>()
-
 
     fun getCharacters(): MutableLiveData<CharacterResponse> {
 

@@ -23,20 +23,10 @@ class CharacterFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        character = Gson().fromJson(this.arguments?.getString("user", null).toString(), Personage::class.java)
+        character = Gson().fromJson(this.arguments?.getString("personage", null).toString(), Personage::class.java)
         vm = ViewModelProvider(this, ViewModelFactory(character!!)).get(
             CharacterViewModel::class.java)
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
     }
 
     override fun onCreateView(
@@ -48,11 +38,6 @@ class CharacterFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.characterViewModel = vm
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
 }

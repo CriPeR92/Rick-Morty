@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Rick &amp; Morty API</string>
-    <string name="name">Name:</string>
-    <string name="status">Status:</string>
-    <string name="species">Specie:</string>
+    <string name="status">Status: %1$s</string>
+    <string name="species">Specie: %1$s</string>
+    <string name="name">Name: %1$s</string>
+    <string name="gender">Gender: %1$s</string>
+    <string name="url"><b>Url:</b> %1$s</string>
 </resources>
